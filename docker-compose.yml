@@ -1,0 +1,91 @@
+
+services:
+  phi3-v0_1_0:
+    image: ${TGI_IMAGE}
+    command: --model-id microsoft/Phi-3-mini-4k-instruct
+    volumes:
+      - ./data:/data
+    ports:
+      - 9063:80
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    shm_size: '1g'
+
+
+  llama3-v0_1_0:
+    image: ${TGI_IMAGE}
+    container_name: llama3-v0_1_0
+    command: 
+      - --model-id /data/${LLAMA3p1}
+      - --quantize bitsandbytes-fp4
+      - --max-total-tokens 1
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+    ports:
+      - 9064:80
+    shm_size: '1g'
+
+
+  dbrx-v0_1_0:
+    image: ${TGI_IMAGE}
+    container_name: dbrx-v0_1_0
+    command: 
+      - --model-id /data/${LLAMA3p1}
+      - --quantize bitsandbytes-fp4
+      - --max-total-tokens 1
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+    ports:
+      - 9064:80
+    shm_size: '1g'
+
+  aya101-v0_1_0:
+    image: ${TGI_IMAGE}
+    container_name: dbrx-v0_1_0
+    command: 
+      - --model-id /data/${LLAMA3p1}
+      - --quantize bitsandbytes-fp4
+      - --max-total-tokens 1
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+    ports:
+      - 9064:80
+    shm_size: '1g'
+
+  kotoba_whisper-v0_1_0:
+    image: ${TGI_IMAGE}
+    container_name: dbrx-v0_1_0
+    command: 
+      - --model-id /data/${LLAMA3p1}
+      - --quantize bitsandbytes-fp4
+      - --max-total-tokens 1
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+    ports:
+      - 9064:80
+    shm_size: '1g'

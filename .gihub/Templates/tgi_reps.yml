@@ -1,0 +1,35 @@
+# ____ TEMPLATE ________
+# services:
+  # template-v0_1_0:
+  #   image: ghcr.io/huggingface/text-generation-inference:2.2.0
+  #   container_name: tgi_llama3-v0_1_0
+  #   command: 
+      # - --model-id /data/${LLAMA3p1}
+      #- --sharded true # uses all gpus setting false uses only one gpu
+      #- --num_shard 2 #if only using 2 GPU CUDA_VISIBLE_DEVICES=0,1 set shards 2
+      #- --dtype #datatype on the model [float16 or bfloat16]
+      # --trust-remote-code #pass code not officially on tranformers. Use with revision
+      # --revision  actual version number helps avoid malicious code [refs/pr/2]
+      # --max-concurrent-requests #maximum concurent requests deafult 128
+      #- --max-input-tokens 4095 #number of maximum input tokens per model
+      # --rope-scaling #allowing rescaling to accomodate larger prompts [linear, dynamic]
+      # --json-output #Outputs the logs in JSON format
+      # --cors-allow-origin "*" #allow CORS for options sent by browser 
+      # --api-key # set api key for reference
+      # --tokenizer-config-path #load the tokenizer configuration which may include a `chat_template
+      # --max-client-batch-size Control the maximum number of inputs that a client can send in a single request
+      # - --quantize bitsandbytes-fp4
+      # - --max-total-tokens 10000
+      
+    # runtime: nvidia
+    # environment:
+    #   - NVIDIA_VISIBLE_DEVICES=all
+    # env_file:
+    #   - .env
+    # volumes:
+    #   - ./data:/data
+    # ports:
+    #   - 9064:80
+    # shm_size: '1g'
+
+# _____________ TEMPLATE________________
