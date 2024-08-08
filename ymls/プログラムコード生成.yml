@@ -1,0 +1,157 @@
+app:
+  description: Code generation
+  icon: "\U0001F916"
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: "\u30D7\u30ED\u30B0\u30E9\u30E0\u30B3\u30FC\u30C9\u751F\u6210"
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1719980010275-source-1719980012716-target
+      source: '1719980010275'
+      sourceHandle: source
+      target: '1719980012716'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1719980012716-source-1719980041795-target
+      source: '1719980012716'
+      sourceHandle: source
+      target: '1719980041795'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: input_text
+          max_length: null
+          options: []
+          required: true
+          type: paragraph
+          variable: input_text
+        - label: target_code
+          max_length: null
+          options: []
+          required: true
+          type: text-input
+          variable: target_code
+      height: 116
+      id: '1719980010275'
+      position:
+        x: 81
+        y: 282
+      positionAbsolute:
+        x: 81
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: meta-llama/Meta-Llama-3-8B-Instruct
+          provider: openai_api_compatible
+        prompt_template:
+        - id: 6d8a922e-cb4d-4e93-a3a7-2498a58760b8
+          role: system
+          text: "\u65E5\u672C\u8A9EAI\u30A8\u30F3\u30B8\u30CB\u30A2\u3068\u3057\u3066\
+            \u3001\u6761\u4EF6\u306B\u5F93\u3063\u3066\u3001\u6307\u793A\u3092\u3082\
+            \u3068\u306B{{#1719980010275.target_code#}}\u3067\u30D7\u30ED\u30B0\u30E9\
+            \u30E0\u3092\u51FA\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002\n\u6761\
+            \u4EF6\uFF1A\n\u30FB\u30D7\u30ED\u30B0\u30E9\u30E0\u306F\u305D\u306E\u307E\
+            \u307E\u5B9F\u884C\u3067\u304D\u308B\u3088\u3046\u306B\u63D0\u4F9B\u3059\
+            \u308B\u3053\u3068\n\u30FB{{#1719980010275.target_code#}}\u306E\u6163\u7FD2\
+            \u306B\u5F93\u3046\u3053\u3068\n\u30FB\u3059\u3079\u3066\u306E\u30B3\u30E1\
+            \u30F3\u30C8\u306F\u65E5\u672C\u8A9E\u3067\u3042\u308B\u3053\u3068\n\u30FB\
+            \u6B63\u78BA\u304B\u3064\u52B9\u7387\u7684\u306A\u30D7\u30ED\u30B0\u30E9\
+            \u30E0\u3067\u3042\u308B\u3053\u3068\n\u6307\u793A\uFF1A{{#1719980010275.input_text#}}\n\
+            \n\u30A2\u30B7\u30B9\u30BF\u30F3\u30C8\uFF1A"
+        selected: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1719980012716'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1719980012716'
+          - text
+          variable: output
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: '1719980041795'
+      position:
+        x: 688
+        y: 282
+      positionAbsolute:
+        x: 688
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -62.79436406907041
+      y: -76.18099266142954
+      zoom: 1
